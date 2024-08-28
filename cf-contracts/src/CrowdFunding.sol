@@ -3,7 +3,7 @@ pragma solidity ^0.8.13;
 
 import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 
-contract CrowdFunding {
+contract CrowdFunding is Ownable{
     
     struct Campaign {
         address owner;
@@ -22,7 +22,7 @@ contract CrowdFunding {
 
     uint256 public numberOfCampaigns = 0;
 
-    constructor(){}
+    constructor() Ownable(){}
 
     function createCampaign(address _owner, string memory _title, string memory _description, uint256 _target, uint256 _deadline, string memory _image) public returns (uint256) {
         Campaign storage campaign = campaigns[numberOfCampaigns];
