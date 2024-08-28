@@ -16,3 +16,9 @@ install:
 
 deploy-sepolia: 
 	forge script script/DeployCrowdFunding.s.sol:DeployCrowdFunding --rpc-url $(SEPOLIA_RPC_URL) --broadcast --verify --etherscan-api-key $(ETHERSCAN_API_KEY) -vvvv
+
+deploy-anvil: 
+	forge script script/DeployCrowdFunding.s.sol:DeployCrowdFunding --rpc-url $(ANVIL_RPC_URL) --broadcast --etherscan-api-key $(ETHERSCAN_API_KEY) -vvvv
+
+deploy: 
+	forge script script/DeployCrowdFunding.s.sol:DeployCrowdFunding --broadcast -vvvv
