@@ -1,7 +1,5 @@
 import React from 'react';
-import { client } from "../app/client";
-import ConnectButton from './ConnectButton';
-import { useWeb3Modal } from '@web3modal/wagmi/react'
+// import ConnectButton from './ConnectButton';
 
 // Define the prop types for CustomButton
 interface CustomButtonProps {

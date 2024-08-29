@@ -1,13 +1,11 @@
 import React, { useState } from 'react'
-import { client } from "../app/client";
 import CustomButton from './CustomButton';
-import { logo, menu, search, thirdweb } from '@/assets';
-import { usePathname, useRouter } from 'next/navigation';
+import { logo, menu, search, logo1 } from '@/assets';
+import {  useRouter } from 'next/navigation';
 import { navlinks } from '@/constants';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useAccount } from 'wagmi';
-import ConnectButton from './ConnectButton';
 import { useWeb3Modal } from '@web3modal/wagmi/react'
 
 const Navbar = () => {
@@ -23,7 +21,7 @@ const Navbar = () => {
                 <input type="text" placeholder="Search for campaigns" className="flex w-full font-epilogue font-normal text-[14px] placeholder:text-[#4b5264] text-white bg-transparent outline-none" />
 
                 <div className="w-[72px] h-full rounded-[20px] bg-[#4acd8d] flex justify-center items-center cursor-pointer">
-                    <img src={search} alt="search" className="w-[15px] h-[15px] object-contain" />
+                    <Image src={search} alt="search" className="w-[15px] h-[15px] object-contain" />
                 </div>
             </div>
 
@@ -40,7 +38,7 @@ const Navbar = () => {
 
                 <Link href="/profile">
                     <div className="w-[52px] h-[52px] rounded-full bg-[#2c2f32] flex justify-center items-center cursor-pointer">
-                        <img src={'thirdweb'} alt="user" className="w-[60%] h-[60%] object-contain" />
+                        <Image src={logo1} alt="user" className="w-[60%] h-[60%] object-contain" />
                     </div>
                 </Link>
             </div>

@@ -11,13 +11,14 @@ import search from './search.svg';
 import menu from './menu.svg';
 import money from './money.svg';
 import loader from './loader.svg';
-import thirdweb from './thirdweb.png';
+import logo1 from './logo1.png';
 
 export {
   tagType,
   createCampaign,
   dashboard,
   logo,
+  logo1,
   logout,
   payment,
   profile,
@@ -27,5 +28,4 @@ export {
   menu,
   money,
   loader,
-  thirdweb,
 };
