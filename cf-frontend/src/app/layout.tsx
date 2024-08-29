@@ -1,12 +1,14 @@
-import type { Metadata } from "next";
-import { Inter, Epilogue } from "next/font/google";
 import "./globals.css";
-import { ThirdwebProvider } from "thirdweb/react";
+import type { Metadata } from "next";
+import { Epilogue } from "next/font/google";
+import { headers } from 'next/headers'
+import { cookieToInitialState } from 'wagmi'
+import { config } from '@/config'
+import AppKitProvider from '@/context'
 
-const inter = Inter({ subsets: ["latin"] });
 const epilogue = Epilogue({
   subsets: ["latin"],
-  weight: ["100","200","300","400","500","600","700","800","900"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
@@ -20,10 +22,11 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const initialState = cookieToInitialState(config, headers().get('cookie'))
   return (
     <html lang="en">
       <body className={epilogue.className}>
-        <ThirdwebProvider>{children}</ThirdwebProvider>
+        <AppKitProvider initialState={initialState}>{children}</AppKitProvider>
       </body>
     </html>
   );
