@@ -5,6 +5,8 @@ import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 
 contract CrowdFunding is Ownable{
     
+    error CrowdFunding__InvalidDeadline();
+
     struct Campaign {
         address owner;
         string title;
@@ -27,7 +29,9 @@ contract CrowdFunding is Ownable{
     function createCampaign(address _owner, string memory _title, string memory _description, uint256 _target, uint256 _deadline, string memory _image) public returns (uint256) {
         Campaign storage campaign = campaigns[numberOfCampaigns];
 
-        require(campaign.deadline < block.timestamp, "The deadline should be a date in the future.");
+        if(campaign.deadline >= block.timestamp){
+            revert CrowdFunding__InvalidDeadline();
+        }
 
         campaign.owner = _owner;
         campaign.title = _title;

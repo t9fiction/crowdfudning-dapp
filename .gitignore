@@ -20,6 +20,7 @@ out/
 # Compiler files
 cache/
 out/
+broadcast
 
 # Ignores development broadcast logs
 !/broadcast

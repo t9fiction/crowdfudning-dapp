@@ -6,13 +6,13 @@ import {CrowdFunding} from "src/CrowdFunding.sol";
 import {HelperConfig} from "script/HelperConfig.s.sol";
 
 contract DeployCrowdFunding is Script {
-    function run() external returns (CrowdFunding) {
+    function run() external returns (CrowdFunding, HelperConfig) {
         HelperConfig helperConfig = new HelperConfig();
         (uint256 deployerKey) = helperConfig.activeNetworkConfig();
         console.log("Deployment of Crowd Funding");
         vm.startBroadcast(deployerKey);
         CrowdFunding cfunding = new CrowdFunding();
         vm.stopBroadcast();
-        return cfunding;
+        return (cfunding, helperConfig);
     }
 }

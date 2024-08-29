@@ -9,7 +9,7 @@ etest:
 	echo "You are in the Makefile"
 
 test: 
-	forge test
+	forge test -vvvv
 
 install: 
 	forge install foundry-rs/forge-std --no-commit
