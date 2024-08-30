@@ -5,7 +5,6 @@ import { ethers } from 'ethers';
 import { checkIfImage } from '@/utils';
 import { money } from '@/assets';
 import CustomButton from '@/components/CustomButton';
-import { useStateContext } from '@/context';
 import FormField from '@/components/FormField';
 import Loader from '@/components/Loader';
 import { useRouter } from 'next/navigation';
