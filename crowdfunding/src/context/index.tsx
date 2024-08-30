@@ -28,10 +28,10 @@ interface StateContextProps {
   address: string | undefined;
   contract: any;
   // createCampaign: (form: CampaignForm) => Promise<void>;
-  getCampaigns: () => Promise<Campaign[]>;
-  getUserCampaigns: () => Promise<Campaign[]>;
+  // getCampaigns: () => Promise<Campaign[]>;
+  // getUserCampaigns: () => Promise<Campaign[]>;
   // donate: (pId: string, amount: string) => Promise<any>;
-  getDonations: (pId: string) => Promise<Donation[]>;
+  // getDonations: (pId: string) => Promise<Donation[]>;
 }
 
 // Define types for your forms and data structures
@@ -80,44 +80,44 @@ export const StateContextProvider = ({ children }: { children: ReactNode }) => {
 
   // Getting all the campaigns
 
-  const getCampaigns = async (): Promise<Campaign[]> => {
-    const { data: _getCampaigns, error } = useReadContract({
-      abi: CONTRACT_ABI,
-      address: CONTRACT_ADDRESS,
-      functionName: 'getCampaigns'
-    })
+  // const getCampaigns = async (): Promise<Campaign[]> => {
+  //   const { data: _getCampaigns, error } = useReadContract({
+  //     abi: CONTRACT_ABI,
+  //     address: CONTRACT_ADDRESS,
+  //     functionName: 'getCampaigns'
+  //   })
 
-    // Type guard to ensure the result is an array
-    if (Array.isArray(_getCampaigns)) {
-      const campaigns: Campaign[] = _getCampaigns.map((campaign: any, i: number) => ({
-        owner: campaign.owner,
-        title: campaign.title,
-        description: campaign.description,
-        target: ethers.formatEther(campaign.target.toString()), // Assuming target is in wei
-        deadline: Number(campaign.deadline), // Ensure it's a number
-        amountCollected: ethers.formatEther(campaign.amountCollected.toString()), // Assuming amountCollected is in wei
-        image: campaign.image,
-        pId: i,
-      }));
+  //   // Type guard to ensure the result is an array
+  //   if (Array.isArray(_getCampaigns)) {
+  //     const campaigns: Campaign[] = _getCampaigns.map((campaign: any, i: number) => ({
+  //       owner: campaign.owner,
+  //       title: campaign.title,
+  //       description: campaign.description,
+  //       target: ethers.formatEther(campaign.target.toString()), // Assuming target is in wei
+  //       deadline: Number(campaign.deadline), // Ensure it's a number
+  //       amountCollected: ethers.formatEther(campaign.amountCollected.toString()), // Assuming amountCollected is in wei
+  //       image: campaign.image,
+  //       pId: i,
+  //     }));
 
-      return campaigns;
-    } else {
-      throw new Error("Unexpected response format from getCampaigns");
-    }
+  //     return campaigns;
+  //   } else {
+  //     throw new Error("Unexpected response format from getCampaigns");
+  //   }
 
-  };
+  // };
 
   // Get campaigns for particular wallet
 
-  const getUserCampaigns = async (): Promise<Campaign[]> => {
-    try {
-      const allCampaigns = await getCampaigns();
-      return allCampaigns.filter((campaign) => campaign.owner === address);
-    } catch (error) {
-      console.error("Failed to fetch user campaigns", error);
-      return [];
-    }
-  };
+  // const getUserCampaigns = async (): Promise<Campaign[]> => {
+  //   try {
+  //     const allCampaigns = await getCampaigns();
+  //     return allCampaigns.filter((campaign) => campaign.owner === address);
+  //   } catch (error) {
+  //     console.error("Failed to fetch user campaigns", error);
+  //     return [];
+  //   }
+  // };
 
   // const donate = async (pId: string, amount: string) => {
   //   const data = await writeContract({
@@ -131,33 +131,33 @@ export const StateContextProvider = ({ children }: { children: ReactNode }) => {
   // };
 
 
-  const getDonations = async (pId: string): Promise<Donation[]> => {
-    try {
-      const { data: _getDonators, error } = await useReadContract({
-        abi: CONTRACT_ABI,
-        address: CONTRACT_ADDRESS,
-        functionName: 'getDonators',
-        args: [pId],
-      });
+  // const getDonations = async (pId: string): Promise<Donation[]> => {
+  //   try {
+  //     const { data: _getDonators, error } = await useReadContract({
+  //       abi: CONTRACT_ABI,
+  //       address: CONTRACT_ADDRESS,
+  //       functionName: 'getDonators',
+  //       args: [pId],
+  //     });
   
-      if (error) {
-        throw new Error(`Error fetching donations: ${error.message}`);
-      }
+  //     if (error) {
+  //       throw new Error(`Error fetching donations: ${error.message}`);
+  //     }
   
-      // Ensure _getDonators is properly formatted
-      if (Array.isArray(_getDonators)) {
-        return _getDonators.map((donation: any) => ({
-          donator: donation.donator,
-          donation: ethers.formatEther(donation.donation.toString()), // Assuming donation amount is in wei
-        }));
-      } else {
-        throw new Error('Unexpected response format from getDonators');
-      }
-    } catch (error) {
-      console.error('Failed to fetch donations', error);
-      return []; // Return an empty array or handle error as needed
-    }
-  };
+  //     // Ensure _getDonators is properly formatted
+  //     if (Array.isArray(_getDonators)) {
+  //       return _getDonators.map((donation: any) => ({
+  //         donator: donation.donator,
+  //         donation: ethers.formatEther(donation.donation.toString()), // Assuming donation amount is in wei
+  //       }));
+  //     } else {
+  //       throw new Error('Unexpected response format from getDonators');
+  //     }
+  //   } catch (error) {
+  //     console.error('Failed to fetch donations', error);
+  //     return []; // Return an empty array or handle error as needed
+  //   }
+  // };
 
 
   return (
@@ -165,11 +165,8 @@ export const StateContextProvider = ({ children }: { children: ReactNode }) => {
       value={{
         address,
         contract,
-        // createCampaign: publishCampaign,
-        getCampaigns,
-        getUserCampaigns,
         // donate,
-        getDonations,
+        // getDonations,
       }}
     >
       {children}
