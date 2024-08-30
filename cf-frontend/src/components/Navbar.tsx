@@ -1,7 +1,8 @@
+'use client'
 import React, { useState } from 'react'
 import CustomButton from './CustomButton';
 import { logo, menu, search, logo1 } from '@/assets';
-import {  useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { navlinks } from '@/constants';
 import Image from 'next/image';
 import Link from 'next/link';
