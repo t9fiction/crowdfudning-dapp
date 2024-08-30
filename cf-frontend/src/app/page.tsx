@@ -1,9 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { ConnectButton } from "thirdweb/react";
 import thirdwebIcon from "@public/thirdweb.svg";
-import { client } from "./client";
 import Navbar from "@/components/Navbar";
 import Profile from "./profile/page";
 import CreateCampaign from "./create-campaign/page";
