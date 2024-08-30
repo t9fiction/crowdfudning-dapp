@@ -1,5 +1,4 @@
 import React from 'react';
-import { v4 as uuidv4 } from 'uuid'; // Ensure you have @types/uuid installed
 import { loader } from '@/assets';
 import FundCard from './FundCard';
 import { useRouter } from 'next/navigation'; // For Next.js 14.1+ with App Directory

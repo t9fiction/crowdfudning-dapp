@@ -65,7 +65,6 @@ const StateContext = createContext<StateContextProps | undefined>(undefined);
 export const StateContextProvider = ({ children }: { children: ReactNode }) => {
   
   
-  
   const publicClient = createPublicClient({
     chain: sepolia,
     transport: http()

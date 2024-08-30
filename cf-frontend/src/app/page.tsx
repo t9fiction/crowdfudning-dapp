@@ -1,7 +1,7 @@
 'use client'
 import React, { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
-import { useAccount, useContractRead } from 'wagmi';
+import { useAccount, useReadContract } from 'wagmi';
 import { CONTRACT_ABI, CONTRACT_ADDRESS } from '@/constants/contract';
 import DisplayCampaigns from '@/components/DisplayCampaigns';
 
@@ -22,7 +22,7 @@ const Home = () => {
   const { isConnected } = useAccount();
 
   // Define the `getCampaigns` function as a hook
-  const { data: _getCampaigns, error } = useContractRead({
+  const { data: _getCampaigns, error } = useReadContract({
     abi: CONTRACT_ABI,
     address: CONTRACT_ADDRESS,
     functionName: 'getCampaigns',
