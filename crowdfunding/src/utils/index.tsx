@@ -20,5 +20,3 @@ export const daysLeft = (deadline:any) => {
     img.onload = () => callback(true);
     img.onerror = () => callback(false);
   };
-
-  // Test Comment for commit
