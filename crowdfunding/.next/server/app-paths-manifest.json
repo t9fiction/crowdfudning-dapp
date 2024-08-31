@@ -1,5 +1,6 @@
 {
   "/page": "app/page.js",
   "/campaign-details/[id]/page": "app/campaign-details/[id]/page.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js"
+  "/create-campaign/page": "app/create-campaign/page.js",
+  "/profile/page": "app/profile/page.js"
 }

@@ -45,7 +45,7 @@ const CreateCampaign: React.FC = () => {
       if (exists) {
         setIsLoading(true);
         try {
-          const data = await writeContract({
+          const tx = await writeContract({
             abi: CONTRACT_ABI,
             address: CONTRACT_ADDRESS,
             functionName: 'createCampaign',
@@ -58,8 +58,9 @@ const CreateCampaign: React.FC = () => {
               form.image, // image URL
             ],
           });
-          console.log("Contract call success", data);
-          router.push('/');
+          // const receipt = await tx.wait();
+          // console.log("Transaction mined:", receipt);
+          router.push('/'); // This will now correctly navigate to the root
         } catch (error) {
           console.error("Contract call failed", error);
         } finally {
@@ -71,6 +72,7 @@ const CreateCampaign: React.FC = () => {
       }
     });
   };
+
 
   return (
     <div className="bg-[#1c1c24] flex justify-center items-center flex-col rounded-[10px] sm:p-10 p-4">
