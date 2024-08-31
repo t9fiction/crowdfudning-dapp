@@ -10,6 +10,7 @@ import { logo1 } from '@/assets';
 import { useStateContext } from '@/context';
 import { useWriteContract } from 'wagmi';
 import { CONTRACT_ABI, CONTRACT_ADDRESS } from '@/constants/contract';
+import Image from 'next/image';
 
 
 
@@ -107,7 +108,7 @@ const CampaignDetails: React.FC = () => {
             <h4 className="font-epilogue font-semibold text-[18px] text-white uppercase">Creator</h4>
             <div className="mt-[20px] flex flex-row items-center flex-wrap gap-[14px]">
               <div className="w-[52px] h-[52px] flex items-center justify-center rounded-full bg-[#2c2f32] cursor-pointer">
-                <img src={'logo1'} alt="user" className="w-[60%] h-[60%] object-contain" />
+                <Image src={logo1} alt="user" className="w-[60%] h-[60%] object-contain" />
               </div>
               <div>
                 <h4 className="font-epilogue font-semibold text-[14px] text-white break-all">{campaign.owner}</h4>
