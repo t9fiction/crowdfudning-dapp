@@ -20,6 +20,11 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/campaign-details/[id]/page.js"
+    ],
+    "/create-campaign/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/create-campaign/page.js"
     ]
   }
 }
