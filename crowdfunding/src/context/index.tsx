@@ -4,7 +4,7 @@ import React, { createContext, ReactNode, useContext, useEffect } from 'react';
 import { config, projectId, metadata } from '@/config';
 import { createWeb3Modal } from '@web3modal/wagmi/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { State, useAccount, WagmiProvider, useWriteContract, useReadContract } from 'wagmi';
+import { State, useAccount, WagmiProvider, useReadContract } from 'wagmi';
 import { createPublicClient, getContract, http } from 'viem';
 import { CONTRACT_ADDRESS, CONTRACT_ABI } from '@/constants/contract';
 import { sepolia } from 'viem/chains';
@@ -31,7 +31,7 @@ interface StateContextProps {
   // getCampaigns: () => Promise<Campaign[]>;
   // getUserCampaigns: () => Promise<Campaign[]>;
   // donate: (pId: string, amount: string) => Promise<any>;
-  // getDonations: (pId: string) => Promise<Donation[]>;
+  getDonations: (pId: string) => Promise<Donation[]>;
 }
 
 // Define types for your forms and data structures
@@ -64,6 +64,8 @@ const StateContext = createContext<StateContextProps | undefined>(undefined);
 
 export const StateContextProvider = ({ children }: { children: ReactNode }) => {
   
+  // const { writeContract } = useWriteContract()
+
   
   const publicClient = createPublicClient({
     chain: sepolia,
@@ -131,33 +133,33 @@ export const StateContextProvider = ({ children }: { children: ReactNode }) => {
   // };
 
 
-  // const getDonations = async (pId: string): Promise<Donation[]> => {
-  //   try {
-  //     const { data: _getDonators, error } = await useReadContract({
-  //       abi: CONTRACT_ABI,
-  //       address: CONTRACT_ADDRESS,
-  //       functionName: 'getDonators',
-  //       args: [pId],
-  //     });
+  const getDonations = async (pId: string): Promise<Donation[]> => {
+    try {
+      const { data: _getDonators, error } = await useReadContract({
+        abi: CONTRACT_ABI,
+        address: CONTRACT_ADDRESS,
+        functionName: 'getDonators',
+        args: [pId],
+      });
   
-  //     if (error) {
-  //       throw new Error(`Error fetching donations: ${error.message}`);
-  //     }
+      if (error) {
+        throw new Error(`Error fetching donations: ${error.message}`);
+      }
   
-  //     // Ensure _getDonators is properly formatted
-  //     if (Array.isArray(_getDonators)) {
-  //       return _getDonators.map((donation: any) => ({
-  //         donator: donation.donator,
-  //         donation: ethers.formatEther(donation.donation.toString()), // Assuming donation amount is in wei
-  //       }));
-  //     } else {
-  //       throw new Error('Unexpected response format from getDonators');
-  //     }
-  //   } catch (error) {
-  //     console.error('Failed to fetch donations', error);
-  //     return []; // Return an empty array or handle error as needed
-  //   }
-  // };
+      // Ensure _getDonators is properly formatted
+      if (Array.isArray(_getDonators)) {
+        return _getDonators.map((donation: any) => ({
+          donator: donation.donator,
+          donation: ethers.formatEther(donation.donation.toString()), // Assuming donation amount is in wei
+        }));
+      } else {
+        throw new Error('Unexpected response format from getDonators');
+      }
+    } catch (error) {
+      console.error('Failed to fetch donations', error);
+      return []; // Return an empty array or handle error as needed
+    }
+  };
 
 
   return (
@@ -166,7 +168,7 @@ export const StateContextProvider = ({ children }: { children: ReactNode }) => {
         address,
         contract,
         // donate,
-        // getDonations,
+        getDonations,
       }}
     >
       {children}

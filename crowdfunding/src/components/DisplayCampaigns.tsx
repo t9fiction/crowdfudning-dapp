@@ -25,10 +25,18 @@ interface DisplayCampaignsProps {
 const DisplayCampaigns: React.FC<DisplayCampaignsProps> = ({ title, isLoading, campaigns }) => {
   const router = useRouter();
 
+  // const handleNavigate = (campaign: Campaign) => {
+  //   console.log(campaign);
+  //   router.push(`/campaign-details/${encodeURIComponent(campaign.pId)}`);
+  // };
   const handleNavigate = (campaign: Campaign) => {
-    // Use URL parameters to pass campaign data
-    router.push(`/campaign-details/${encodeURIComponent(campaign.title)}`);
+    // Store campaign object in localStorage
+    console.log(campaign);
+    localStorage.setItem('campaign', JSON.stringify(campaign));
+    router.push(`/campaign-details/${campaign.pId}`);
   };
+  
+  
 
   return (
     <div>
