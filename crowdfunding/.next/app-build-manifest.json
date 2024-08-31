@@ -16,10 +16,10 @@
       "static/chunks/main-app.js",
       "static/chunks/app/profile/page.js"
     ],
-    "/create-campaign/page": [
+    "/_not-found/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/create-campaign/page.js"
+      "static/chunks/app/_not-found/page.js"
     ]
   }
 }
